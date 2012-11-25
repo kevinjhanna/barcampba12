@@ -1,0 +1,23 @@
+<header class=hero-unit>
+  <h1>Las charlas del BarCamp</h1>
+  <p>La pizarra de la entrada, en internet</p>
+</header>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% talks.each do |talk | %>
+      <tr>
+        <th><a href=<%= "/charlas/#{talk.id}" %>><%= talk.title %></a></th>
+        <th><%= talk.author %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

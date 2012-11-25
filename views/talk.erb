@@ -1,0 +1,50 @@
+<header class=page-header>
+  <h1><%= talk.title %></h1>
+  <p>Autor: <strong><%= talk.author %></strong></p>
+  <p><%= talk.description %></p>
+</header>
+
+<h2>Escribir comentario</h2>
+
+<% unless comment.errors.empty? %>
+  <div class="alert alert-error">
+    Euu! Completá los campos en rojo
+  </div>
+<% end %>
+
+<form method=post action="<%= "/charlas/#{talk.id}" %>">
+  <input type=text name=user placeholder="Tu nombre" class="<%= ('error' unless comment.errors[:user].empty?) %>" value="<%= comment.user %>">
+  <br>
+
+  <textarea name=body placeholder="Comentario" class="<%= ('error' unless comment.errors[:body].empty?) %>"><%= comment.body %></textarea>
+  <br>
+
+  <label>Rating:</label>
+  Horrible
+  <input type=range min=0 max=5 name=rating placeholder="Rating"></input>
+  Excelente
+  </br>
+
+  <button type=submit class=btn>Comentar</button>
+</form>
+
+<h2>Comentarios</h2>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Rating</th>
+      <th>Comentario</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% talk.comments.each do |comment| %>
+      <tr>
+        <th><%= comment.rating %></th>
+        <th><%= comment.body %></th>
+        <th><%= comment.user %></th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

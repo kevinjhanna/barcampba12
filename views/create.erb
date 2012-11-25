@@ -1,0 +1,35 @@
+<h1>Subí tu charla de barcamp</h1>
+
+<% unless talk.errors.empty? %>
+  <div class="alert alert-error">
+    Euu! Completá los campos en rojo
+  </div>
+<% end %>
+
+<form method=post action="/charlas/crear">
+  <input
+    type=text
+    name=title
+    placeholder="El título de tu charla"
+    class="<%= ('error' unless talk.errors[:title].empty?) %>"
+    value="<%= talk.title %>"
+  >
+  <br>
+  <input
+    type=text
+    name=author
+    placeholder="Tu nombre"
+    class="<%= ('error' unless talk.errors[:author].empty?) %>"
+    value="<%= talk.author %>"
+  >
+  <br>
+  <textarea
+    name=description
+    placeholder="La descripción de la charla"
+    class="<%= ('error' unless talk.errors[:description].empty?) %>"
+    value="<%= talk.description %>"
+   >
+  </textarea>
+  <br>
+   <button type=submit class="btn btn-large btn-success">Subir</button>
+</form>
